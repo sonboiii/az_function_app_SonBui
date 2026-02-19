@@ -65,7 +65,8 @@ jobs:
         uses: Azure/functions-action@v1
         id: fa
         with:
-          app-name: 'azfuncBui'
-          slot-name: 'Production'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_724AD04836724367988447897A336A07 }}
+          app-name: 'azfunctionSB'
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
+          # These lines prevent the action from trying to modify Kudu mid-deploy
+          scm-do-build-during-deployment: false
+          enable-oryx-build: false
